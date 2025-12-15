@@ -20,3 +20,21 @@
 
 # 
 
+\## Résultats
+
+
+
+Le modèle RandomForest obtient les meilleures performances :
+
+\- RMSE ≈ 0.50
+
+\- R² ≈ 0.80
+
+
+
+Un graphique comparant les valeurs réelles et prédites est disponible
+
+dans `reports/figures/true\_vs\_pred.png`.
+
+
+
