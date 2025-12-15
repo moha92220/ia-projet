@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Envs
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data & models (on évite de push du lourd)
+data/raw/
+data/processed/
+models/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Reports
+reports/figures/*.png
