@@ -1,7 +1,13 @@
 pandas
 numpy
-scikit-learn
+scikit-learn==1.5.1
 matplotlib
 joblib
 python-dotenv
 jupyter
+fastapi
+uvicorn
+pytest
+httpx
+
+

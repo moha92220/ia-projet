@@ -1,0 +1,63 @@
+name: CI/CD ML Housing API
+
+on:
+  push:
+    branches:
+      - dev
+      - test
+  pull_request:
+    branches:
+      - test
+      - main
+
+jobs:
+  ci:
+    name: Continuous Integration
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Récupération du code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Installation de Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3️⃣ Installation des dépendances
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4️⃣ Vérification de base (imports critiques)
+      - name: Run basic import checks
+        run: |
+          python - <<EOF
+          import pandas
+          import sklearn
+          import fastapi
+          import joblib
+          print("Basic imports OK")
+          EOF
+
+      # 5️⃣ Lancer les tests unitaires
+      - name: Run unit tests
+        run: |
+          pytest
+
+  prod-simulation:
+    name: Production Simulation
+    needs: ci
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Production validation message
+        run: |
+          echo "All tests passed. Ready for production 🚀"
